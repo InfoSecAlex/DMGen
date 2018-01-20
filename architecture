@@ -1,0 +1,29 @@
+
+Architecture model for the DMGen project.
+
+User input example:
+
+./main_DMGen.py <type: NPC, tavern, temple, etc> [options/seeds] [-D for debug] [no. times: 1 default] [--wf writes]
+
+Running the main file with the arguments selected will produce only what is specified.
+
+Specifying the NPC gen, for example, will then call a function to reference the various files associated with the 
+NPC gen and produce a random NPC. If the user were to specify 'NPC sex race', it will generate only an NPC's
+sex and race - presumably the DM may already have a name, features, professions, or they are unimportant.
+
+In terms of design I think it will be easier to leave single feature exclusions to the user - otherwise, we either
+add CLI arguments to opt-out of certain options associated with the type generator, or a user might have to specify
+several things. If I determine everything randomly EXCEPT name for NPCs, it doesn't make sense for me to have to use
+....py NPC sex race features prof alignment. I'd just use ....py NPC, and substitute my own name.
+
+
+
+Program Flow:
+
+-If no type submitted, prompt user or refer to help file/usage information.
+-Call the main type specified by CLI arg: NPC, tavern, etcetera
+    -Reference any files or libraries associated that might store the lists of random info.
+    -Pick randomly according to all selected options - default to randomize every option.
+    -Feed this info back to a user.
+    -Repeat this as many times as specified.
+    -If specified, write this information to a file.
